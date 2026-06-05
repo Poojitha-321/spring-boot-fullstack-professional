@@ -14,21 +14,26 @@
 	<name>demo</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
-		<java.version>15</java.version>
+		<java.version>17</java.version>
 		<app.image.name>springboot-react-fullstack</app.image.name>
 		<app.image.tag/>
 	</properties>
 	<dependencies>
+	    <dependency>
+               <groupId>org.springframework.boot</groupId>
+               <artifactId>spring-boot-starter-data-redis</artifactId>
+         </dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
+         <dependency>
+             <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+               <version>1.18.30</version>
+                  <optional>true</optional>
+        </dependency>
+		
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -98,7 +103,7 @@
 						<version>2.5.2</version>
 						<configuration>
 							<from>
-								<image>openjdk:15</image>
+								<image>openjdk:17</image>
 							</from>
 							<container>
 								<ports>
@@ -150,7 +155,7 @@
 						<version>2.5.2</version>
 						<configuration>
 							<from>
-								<image>openjdk:15</image>
+								<image>openjdk:17</image>
 							</from>
 							<container>
 								<ports>
@@ -192,7 +197,7 @@
 		<profile>
 			<id>build-frontend</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<activeByDefault>false</activeByDefault>
 			</activation>
 			<build>
 				<plugins>
