@@ -4,14 +4,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "worker", indexes = {
     @Index(name = "idx_worker_phone", columnList = "phone")
 })
+
 public class Worker {
 
     @Id
@@ -33,4 +36,6 @@ public class Worker {
 
     @Column(nullable = false)
     private Boolean active = true;
+
+    
 }

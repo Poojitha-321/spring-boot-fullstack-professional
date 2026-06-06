@@ -31,14 +31,16 @@ public class AttendanceController {
         return ResponseEntity.ok(attendanceService.getActiveWorkers());
     }
 
-    @GetMapping("/log")
+    @GetMapping(value = "/log")
     public ResponseEntity<Page<AttendanceLog>> getLog(
-        @RequestParam Long workerId,
-        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
-        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to,
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "20") int size
+            @RequestParam(name = "workerId") Long workerId,
+            @RequestParam(name = "from") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime from,
+            @RequestParam(name = "to") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime to,
+            @RequestParam(name = "page", defaultValue = "0") int page,
+            @RequestParam(name = "size", defaultValue = "20") int size
     ) {
-        return ResponseEntity.ok(attendanceService.getAttendanceHistory(workerId, from, to, PageRequest.of(page, size)));
+        return ResponseEntity.ok(
+            attendanceService.getAttendanceHistory(workerId, from, to, PageRequest.of(page, size))
+        );
     }
 }

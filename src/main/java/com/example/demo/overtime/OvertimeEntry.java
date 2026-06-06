@@ -7,15 +7,18 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "overtime_entry", indexes = {
     @Index(name = "idx_overtime_worker", columnList = "worker_id"),
     @Index(name = "idx_overtime_date", columnList = "date")
 })
+ 
 public class OvertimeEntry {
 
     @Id
@@ -45,4 +48,6 @@ public class OvertimeEntry {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private SettlementStatus settlementStatus = SettlementStatus.PENDING;
+
+   
 }

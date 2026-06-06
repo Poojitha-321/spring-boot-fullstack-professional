@@ -93,7 +93,12 @@ public class AttendanceService {
             int year = LocalDate.now().getYear();
             int month = LocalDate.now().getMonthValue();
             Double usedOT = overtimeRepository.sumOvertimeHoursByWorkerAndMonth(workerId, year, month);
-            double remaining = Math.max(0, MONTHLY_OT_CAP - usedOT);
+            double currentUsed =
+                  usedOT == null ? 0.0 : usedOT;
+
+               double remaining =
+               Math.max(0,
+                MONTHLY_OT_CAP - currentUsed);
             double cappedOT = Math.min(overtimeHours, remaining);
 
             log.setOvertimeHours(cappedOT);

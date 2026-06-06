@@ -7,15 +7,18 @@ import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "attendance_log", indexes = {
     @Index(name = "idx_attendance_worker", columnList = "worker_id"),
     @Index(name = "idx_attendance_clockin", columnList = "clock_in_time")
 })
+ 
 public class AttendanceLog {
 
     @Id
@@ -44,4 +47,6 @@ public class AttendanceLog {
 
     @Column(nullable = false)
     private Boolean flagged = false;
+
+  
 }
